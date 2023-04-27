@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 
 //Agregando Los Servicios
 builder.Services.AddScoped<IToDoListService, ToDoListService>();
+builder.Services.AddScoped<IToDoListItemService, ToDoListItemService>();
 
 //Agregando Conexi�n Con la DB
 

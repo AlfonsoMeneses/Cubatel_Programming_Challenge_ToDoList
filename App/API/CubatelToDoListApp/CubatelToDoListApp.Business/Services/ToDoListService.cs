@@ -81,6 +81,22 @@ namespace CubatelToDoListApp.Business.Services
             return _mapper.Map<TaskDto>(taskToDelete);
         }
 
+        public IList<TaskItemDto> GetTaskItems(int id)
+        {
+            var task = ValidateIdTask(id);
+
+            var lst = _db.Items.Where(item => item.TaskId == id).ToList();
+
+            var lstTaskItems = new List<TaskItemDto>();
+
+            foreach (var item in lst)
+            {
+                lstTaskItems.Add(_mapper.Map<TaskItemDto>(item));
+            }
+
+            return lstTaskItems;
+        }
+
         private DataService.Entities.Task ValidateIdTask(int id)
         {
             var taskToEdit = _db.Tasks.FirstOrDefault(task => task.IdTask == id);
@@ -92,5 +108,7 @@ namespace CubatelToDoListApp.Business.Services
 
             return taskToEdit;
         }
+
+       
     }
 }

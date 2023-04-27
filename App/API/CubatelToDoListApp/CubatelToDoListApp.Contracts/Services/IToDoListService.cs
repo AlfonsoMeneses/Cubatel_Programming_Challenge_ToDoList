@@ -13,5 +13,7 @@ namespace CubatelToDoListApp.Contracts.Services
         TaskDto CreateTask(string name, string description);
         TaskDto EditTask(int id, TaskDto task);
         TaskDto DeleteTask(int id);
+
+        IList<TaskItemDto> GetTaskItems(int id);
     }
 }
