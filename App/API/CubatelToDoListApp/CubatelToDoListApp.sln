@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D53A3A3B-8CF2-4854-B465-8929EFDD53E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5352B686-A2E3-47A2-AC6F-6EAE6E213ECD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{17941DBD-11A1-443E-ACF7-F2E7236336D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{73B7A779-D162-49E7-A2FE-6018D88ECE0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubatelToDoListApp.API", "CubatelToDoListApp.API\CubatelToDoListApp.API.csproj", "{D2ECAB75-13AC-4249-97D3-B3C86D21C15B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubatelToDoListApp.Business", "CubatelToDoListApp.Business\CubatelToDoListApp.Business.csproj", "{26D2F79A-3117-4F60-84AC-917E062003C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubatelToDoListApp.Contracts", "CubatelToDoListApp.Contracts\CubatelToDoListApp.Contracts.csproj", "{49823E99-F468-4235-8695-8482F4893A10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubatelToDoListApp.DataService", "CubatelToDoListApp.DataService\CubatelToDoListApp.DataService.csproj", "{93B11233-F90E-4EEE-8955-3C8DFEA56E92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D256C436-ED54-4A2E-9DA0-60A09F330590}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2ECAB75-13AC-4249-97D3-B3C86D21C15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2ECAB75-13AC-4249-97D3-B3C86D21C15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2ECAB75-13AC-4249-97D3-B3C86D21C15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2ECAB75-13AC-4249-97D3-B3C86D21C15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D2F79A-3117-4F60-84AC-917E062003C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D2F79A-3117-4F60-84AC-917E062003C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D2F79A-3117-4F60-84AC-917E062003C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D2F79A-3117-4F60-84AC-917E062003C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49823E99-F468-4235-8695-8482F4893A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49823E99-F468-4235-8695-8482F4893A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49823E99-F468-4235-8695-8482F4893A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49823E99-F468-4235-8695-8482F4893A10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B11233-F90E-4EEE-8955-3C8DFEA56E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B11233-F90E-4EEE-8955-3C8DFEA56E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B11233-F90E-4EEE-8955-3C8DFEA56E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B11233-F90E-4EEE-8955-3C8DFEA56E92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2ECAB75-13AC-4249-97D3-B3C86D21C15B} = {5352B686-A2E3-47A2-AC6F-6EAE6E213ECD}
+		{26D2F79A-3117-4F60-84AC-917E062003C3} = {73B7A779-D162-49E7-A2FE-6018D88ECE0F}
+		{49823E99-F468-4235-8695-8482F4893A10} = {17941DBD-11A1-443E-ACF7-F2E7236336D7}
+		{93B11233-F90E-4EEE-8955-3C8DFEA56E92} = {D53A3A3B-8CF2-4854-B465-8929EFDD53E4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3958C6AF-8D24-4071-BD99-B758B0D18663}
+	EndGlobalSection
+EndGlobal
