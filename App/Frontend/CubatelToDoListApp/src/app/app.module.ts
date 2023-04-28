@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmViewComponent } from './views/helpers/confirm-view/confirm-view.component';
 import { WaitingComponent } from './views/helpers/waiting/waiting.component';
 import { CreateEditTaskComponent } from './views/task/create-edit-task/create-edit-task.component';
+import { ErrorViewComponent } from './views/helpers/error-view/error-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreateEditTaskComponent } from './views/task/create-edit-task/create-ed
     TaskItemsComponent,
     ConfirmViewComponent,
     WaitingComponent,
-    CreateEditTaskComponent
+    CreateEditTaskComponent,
+    ErrorViewComponent
   ],
   imports: [
     BrowserModule,

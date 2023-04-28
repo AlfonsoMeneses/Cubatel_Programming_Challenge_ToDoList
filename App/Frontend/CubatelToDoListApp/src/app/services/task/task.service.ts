@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { TaskDto } from 'src/app/models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,17 @@ export class TaskService {
     };
 
     return this._http.post(urlService,body);
+  }
+
+  public editTask(taskToEdit:TaskDto):Observable<any>{
+    let urlService = this._urlBase + this._edit.replace(this._path,taskToEdit.idTask.toString());
+
+    let body = {
+      name : taskToEdit.name,
+      description: taskToEdit.description
+    };
+
+    return this._http.put(urlService,body);
   }
 
   public delete(id:number):Observable<any>{

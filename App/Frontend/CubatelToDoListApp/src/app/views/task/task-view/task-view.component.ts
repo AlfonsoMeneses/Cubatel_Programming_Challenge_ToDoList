@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskDto } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task/task.service';
 
 declare var window:any;
@@ -11,10 +12,9 @@ declare var window:any;
 export class TaskViewComponent implements OnInit {
   //Datos
   public tasks: Array<any> = [];
-  public selectedTask:any = {name:''};
+  public selectedTask:TaskDto = new TaskDto(-1,'','');
 
-  public taskName:string = '';
-  public description:string = '';
+
 
   //Validaciones
   public isWaiting: boolean = false;
@@ -26,6 +26,7 @@ export class TaskViewComponent implements OnInit {
   //Models
   confirmDeleteModel:any;
   createModal:any;
+  errorModal:any;
 
   constructor(private _taskService: TaskService) {}
   ngOnInit(): void {
@@ -39,7 +40,11 @@ export class TaskViewComponent implements OnInit {
     );
 
     this.createModal = new window.bootstrap.Modal(
-      document.getElementById("createModal")
+      document.getElementById("createOrEditModal")
+    );
+
+    this.errorModal = new window.bootstrap.Modal(
+      document.getElementById("errorModal")
     );
   }
 
@@ -57,31 +62,28 @@ export class TaskViewComponent implements OnInit {
     );
   }
 
-  setTaskVariables(){
-    this.taskName = '';
-    this.description = "";
-  }
+
 
   //New Task
   OnViewNewTaskModal(){
-    this.setTaskVariables();
+    this.selectedTask =  new TaskDto(-1,'','');
     this.createModal.show();
   }
 
-  OnCreateNewTask(){
-    console.log(this.taskName, this.description);
+  confirmCreateTask(status:boolean){
     this.createModal.hide();
-    this.isWaiting = true;
-    this._taskService.createTask(this.taskName, this.description).subscribe(
-      response =>{
-        this.setTaskVariables();
-        this.getTask();
-        this.isWaiting = true;
-      },
-      error =>{
-        this.OnError(error);
-      }
-    );
+    if (status) {
+      this.getTask();
+    }
+  }
+
+  //Edit Task
+  OnShowEditTaskModal(taskToEdit:TaskDto){
+    this.selectedTask.idTask  = taskToEdit.idTask;
+    this.selectedTask.name = taskToEdit.name;
+    this.selectedTask.description = taskToEdit.description;
+
+    this.createModal.show();
   }
 
   //Delete Task
@@ -93,8 +95,8 @@ export class TaskViewComponent implements OnInit {
   OnDeleteTask() {
 
       this.confirmDeleteModel.hide();
-
       this.isWaiting = true;
+
       this._taskService.delete(this.selectedTask.idTask).subscribe(
         (response) => {
           this.isWaiting = false;
@@ -114,7 +116,6 @@ export class TaskViewComponent implements OnInit {
 
   //Manejo Errores
   OnError(exception: any) {
-    console.log(exception);
     let status = exception.status;
     switch (status) {
       case 400:
@@ -122,10 +123,12 @@ export class TaskViewComponent implements OnInit {
         break;
 
       default:
-        this.errorMessage = 'Error interno , intente en otro momento';
+        this.errorMessage = 'Internal error, try later';
         break;
     }
 
     this.hasError = true;
+
+    this.errorModal.show();
   }
 }
