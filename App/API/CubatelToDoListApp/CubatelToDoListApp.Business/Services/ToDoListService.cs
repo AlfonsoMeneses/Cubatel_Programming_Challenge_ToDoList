@@ -74,6 +74,16 @@ namespace CubatelToDoListApp.Business.Services
         {
             var taskToDelete = this.ValidateIdTask(id);
 
+            var lst = _db.Items.Where(item => item.TaskId == id).ToList();
+
+            var itemsComplate = lst.Where(item => item.IsCompleted == 1).ToList();
+
+            if (lst.Count != itemsComplate.Count)
+            {
+                throw new ToDoListException("You can't delete a task with items without complete");
+            }
+
+            _db.Items.RemoveRange(lst);
             _db.Tasks.Remove(taskToDelete);
 
             _db.SaveChanges();
