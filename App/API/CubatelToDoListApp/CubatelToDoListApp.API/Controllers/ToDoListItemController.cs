@@ -45,7 +45,7 @@ namespace CubatelToDoListApp.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditItem(int id, [FromBody] TaskItemRequest taskItem)
+        public IActionResult EditItem(int id, [FromBody] TaskItemToEditRequest taskItem)
         {
             try
             {

@@ -91,9 +91,9 @@ namespace CubatelToDoListApp.Business.Services
             return _mapper.Map<TaskDto>(taskToDelete);
         }
 
-        public IList<TaskItemDto> GetTaskItems(int id)
+        public TaskDto GetTaskItems(int id)
         {
-            var task = ValidateIdTask(id);
+            var taskToValidate = ValidateIdTask(id);
 
             var lst = _db.Items.Where(item => item.TaskId == id).ToList();
 
@@ -104,19 +104,23 @@ namespace CubatelToDoListApp.Business.Services
                 lstTaskItems.Add(_mapper.Map<TaskItemDto>(item));
             }
 
-            return lstTaskItems;
+            var task = _mapper.Map<TaskDto>(taskToValidate);
+
+            task.Items = lstTaskItems;
+
+            return task;
         }
 
         private DataService.Entities.Task ValidateIdTask(int id)
         {
-            var taskToEdit = _db.Tasks.FirstOrDefault(task => task.IdTask == id);
+            var task = _db.Tasks.FirstOrDefault(task => task.IdTask == id);
 
-            if (taskToEdit == null)
+            if (task == null)
             {
                 throw new ToDoListException("This Task doesnt exist");
             }
 
-            return taskToEdit;
+            return task;
         }
 
        
