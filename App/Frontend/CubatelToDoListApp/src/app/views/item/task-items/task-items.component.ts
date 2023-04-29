@@ -16,6 +16,7 @@ export class TaskItemsComponent implements OnInit {
   //Date
   public task: any;
   public taskId: any;
+  public taskName: string='';
 
   public selectedItem: ItemDto = new ItemDto(-1, -1, '', '', 0);
 
@@ -57,12 +58,10 @@ export class TaskItemsComponent implements OnInit {
       document.getElementById('completeModal')
     );
 
-    /*
-
     this.errorModal = new window.bootstrap.Modal(
       document.getElementById("errorModal")
     );
-    */
+
   }
 
   getTaskId() {
@@ -82,6 +81,7 @@ export class TaskItemsComponent implements OnInit {
     this._taskService.getTaskItems(this.taskId).subscribe(
       (response) => {
         this.task = response;
+        this.taskName = this.task.name;
         this.isWaiting = false;
       },
       (error) => {
@@ -117,13 +117,14 @@ export class TaskItemsComponent implements OnInit {
   }
 
   //Edit Task
-  OnShowEditTaskModal(itemToEdit: ItemDto) {
+  OnShowEditItemModal(itemToEdit: ItemDto) {
     this.selectedItem.idItem = itemToEdit.idItem;
     this.selectedItem.name = itemToEdit.name;
     this.selectedItem.description = itemToEdit.description;
 
     this.createModal.show();
   }
+
 
   //Remove
   OnConfirmRemove(item: ItemDto) {
@@ -183,5 +184,7 @@ export class TaskItemsComponent implements OnInit {
     }
 
     this.hasError = true;
+    this.errorModal.show();
+
   }
 }
