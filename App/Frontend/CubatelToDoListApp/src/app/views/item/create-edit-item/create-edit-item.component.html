@@ -1,0 +1,48 @@
+<app-waiting *ngIf="isWaiting"></app-waiting>
+<div class="container" *ngIf="!isWaiting">
+  <form
+    (ngSubmit)="OnCreateOrEditItem()"
+    #newItemForm="ngForm"
+    class="was-validated"
+  >
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Name"
+        name="taskName"
+        [(ngModel)]="item.name"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        rows="3"
+        name="description"
+        [(ngModel)]="item.description"
+      ></textarea>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="hasError">
+      {{ errorMessage }}
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      data-bs-dismiss="modal"
+    >
+      Close
+    </button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="newItemForm.invalid"
+    >
+      {{ btnTitle }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,93 @@
+<app-waiting *ngIf="isWaiting"></app-waiting>
+<div class="container" *ngIf="!isWaiting">
+  <h5 class="card-title">To Do List</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col" colspan="3" ></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks; index as i" >
+        <th scope="row">{{i + 1}}</th>
+        <td>{{ task.name}}</td>
+        <td>{{ task.description}}</td>
+        <td>
+          <button class="btn btn-primary text-white ml-2" [routerLink]="'task/'+task.idTask" >View</button>
+        </td>
+        <td>
+          <button class="btn btn-success text-white ml-2"(click)="OnShowEditTaskModal(task)" >Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger text-white ml-2" (click)="OnConfirmDelete(task )" >Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-dark" (click)="refresh()" >Refresh</button>
+  <button class="btn btn-outline-primary" (click)="OnViewNewTaskModal()" >New Task</button>
+</div>
+<!--Create Or Edit Task-->
+<div class="modal fade" id="createOrEditModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="createOrEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="createOrEditModalLabel">New Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+        <div class="modal-body">
+            <app-create-edit-task [task]="selectedTask"
+                                  (createOrEditSuccessEmit)="confirmCreateTask($event)" >
+
+            </app-create-edit-task>
+        </div>
+
+        <div class="modal-footer">
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!--Delete Task Confirm-->
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Task: {{selectedTask.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Delete the Task, Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="OnDeleteTask()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Error Modal-->
+<div class="modal fade" id="errorModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h1 class="modal-title fs-5" id="errorModalLabel">Error</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ errorMessage}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
