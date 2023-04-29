@@ -16,7 +16,7 @@
         <td>{{ task.name}}</td>
         <td>{{ task.description}}</td>
         <td>
-          <button class="btn btn-primary text-white ml-2" routerLink="items" >View</button>
+          <button class="btn btn-primary text-white ml-2" [routerLink]="'task/'+task.idTask" >View</button>
         </td>
         <td>
           <button class="btn btn-success text-white ml-2"(click)="OnShowEditTaskModal(task)" >Edit</button>

@@ -14,8 +14,6 @@ export class TaskViewComponent implements OnInit {
   public tasks: Array<any> = [];
   public selectedTask:TaskDto = new TaskDto(-1,'','');
 
-
-
   //Validaciones
   public isWaiting: boolean = false;
 
@@ -29,6 +27,7 @@ export class TaskViewComponent implements OnInit {
   errorModal:any;
 
   constructor(private _taskService: TaskService) {}
+
   ngOnInit(): void {
     this.setModals();
     this.getTask();

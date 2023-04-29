@@ -1,0 +1,129 @@
+<app-waiting *ngIf="isWaiting"></app-waiting>
+<div class="container" *ngIf="!isWaiting">
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="staticEmail" class="col-sm-2 col-form-label">{{task.name}}</label>
+      </div>
+      <div class="mb-3">
+
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          readonly
+          rows="3"
+          style="resize: none;"
+        >{{task.description}}</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Task Items</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Name</th>
+            <th scope="col ">Description</th>
+            <th scope="col " colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of task.items; index as i" [ngClass]="isItemComplete(item) ? 'table-success' : '' ">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+
+            <td>
+              <button *ngIf="!isItemComplete(item)" class="btn btn-success" (click)="OnShowEditTaskModal(item)" >Edit</button>
+            </td>
+            <td>
+              <button *ngIf="!isItemComplete(item)" class="btn btn-danger" (click)="OnConfirmRemove(item)">Remove</button>
+            </td>
+            <td>
+              <button *ngIf="!isItemComplete(item)" class="btn btn-dark">Move</button>
+            </td>
+            <td>
+              <button *ngIf="!isItemComplete(item)" class="btn btn-primary" (click)="OnCompleteConfirmItem(item)" >Complete</button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-outline-dark" (click)="refresh()" >Refresh</button>
+        <button class="btn btn-outline-primary ml-2" (click)="OnViewNewTaskModal()"  >Add Item</button>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <button class="btn btn-light" routerLink="" >Go Back To Task</button>
+  </div>
+
+</div>
+
+<!--Modals-->
+
+<!--Create Or Edit Task-->
+<div class="modal fade" id="createOrEditModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="createOrEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="createOrEditModalLabel">New Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+        <div class="modal-body">
+          <app-create-edit-item [item]="selectedItem"
+                                [taskId] = "taskId"
+                                (createOrEditSuccessEmit)="OnCrearOrEdit($event)">
+
+          </app-create-edit-item>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<!--Complete Items Confirm-->
+<div class="modal fade" id="completeModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="completeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h1 class="modal-title fs-5" id="completeModalLabel">Complete Item: {{selectedItem.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Complete this Item, Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="OnCompleteItem()">Accept</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Remove Items Confirm-->
+<div class="modal fade" id="removeModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="removeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h1 class="modal-title fs-5" id="removeModalLabel">Delete Item: {{selectedItem.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Remove this Item, Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="OnRemoveItem()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,14 @@ export class TaskService {
     return this._http.get(urlService);
   }
 
+  public getTaskItems(taskId:number):Observable<any>{
+
+    let urlService = this._urlBase + this._getTaskItems.replace(this._path,taskId.toString());
+
+    return this._http.get(urlService);
+
+  }
+
   public createTask(name:string,description:string):Observable<any>{
     let urlService = this._urlBase + this._create;
 

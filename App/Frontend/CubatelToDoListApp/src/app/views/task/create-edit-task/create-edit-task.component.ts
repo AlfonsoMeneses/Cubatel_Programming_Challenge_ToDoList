@@ -73,7 +73,7 @@ export class CreateEditTaskComponent implements OnInit {
         break;
 
       default:
-        this.errorMessage = 'Error interno , intente en otro momento';
+        this.errorMessage = 'Internal error, try later';
         break;
     }
 
