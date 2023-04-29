@@ -38,7 +38,7 @@ namespace CubatelToDoListApp.API.Controllers
             {
                 var res = new
                 {
-                    Error = "Error interno, intente mas tarde "
+                    Error = "Internal error, try later "
                 };
                 return StatusCode(500, res);
             }
@@ -65,7 +65,7 @@ namespace CubatelToDoListApp.API.Controllers
             {
                 var res = new
                 {
-                    Error = "Error interno, intente mas tarde "
+                    Error = "Internal error, try later"
                 };
                 return StatusCode(500, res);
             }
@@ -91,7 +91,7 @@ namespace CubatelToDoListApp.API.Controllers
             {
                 var res = new
                 {
-                    Error = "Error interno, intente mas tarde "
+                    Error = "Internal error, try later "
                 };
                 return StatusCode(500, res);
             }
@@ -117,7 +117,7 @@ namespace CubatelToDoListApp.API.Controllers
             {
                 var res = new
                 {
-                    Error = "Error interno, intente mas tarde "
+                    Error = "Internal error, try later"
                 };
                 return StatusCode(500, res);
             }
@@ -143,7 +143,7 @@ namespace CubatelToDoListApp.API.Controllers
             {
                 var res = new
                 {
-                    Error = "Error interno, intente mas tarde "
+                    Error = "Internal error, try later "
                 };
                 return StatusCode(500, res);
             }
